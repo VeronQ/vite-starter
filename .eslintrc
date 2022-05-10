@@ -1,0 +1,6 @@
+{
+  "extends": "@antfu",
+  "rules": {
+    "vue/first-attribute-linebreak": 0
+  }
+}
