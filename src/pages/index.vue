@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const { t } = useI18n()
 </script>
 
 <template>
   <div>
-    {{ t('intro') }}
+    <h1 class="text-xl">
+      Index
+    </h1>
   </div>
 </template>

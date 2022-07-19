@@ -1,6 +1,5 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.0.0",
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint .",
@@ -14,8 +13,8 @@
     "@vueuse/head": "^0.7.6",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.16",
     "vue": "^3.2.25",
-    "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {

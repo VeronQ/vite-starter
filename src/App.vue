@@ -1,35 +1,40 @@
 <script setup lang="ts">
-import { useProgressBar } from '@/composables'
+import type { Component, ComputedRef } from 'vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { LayoutDefault, LayoutFullPage } from '@/layouts'
+import { LAYOUTS } from '@/layouts/types'
+import { useProgressBar } from '@/composables'
 
 const route = useRoute()
-const { done, start } = useProgressBar()
 
-const layoutComponent = computed(() => {
+const { start, done } = useProgressBar()
+
+const layout: ComputedRef<Component> = computed(() => {
   switch (route.meta?.layout) {
-    case 'full-page':
+    case LAYOUTS.FULL_PAGE:
       return LayoutFullPage
-    default:
-      return LayoutDefault
   }
+
+  return LayoutDefault
 })
 </script>
 
 <template>
-  <component :is="layoutComponent">
-    <RouterView v-slot="{ Component }">
-      <Transition mode="out-in">
-        <KeepAlive>
+  <component :is="layout">
+    <RouterView v-slot="{ Component: Comp }">
+      <template v-if="Comp">
+        <Transition mode="out-in">
           <Suspense @pending="start"
                     @resolve="done"
           >
-            <component :is="Component" />
+            <component :is="Comp" />
             <template #fallback>
               Loading...
             </template>
           </Suspense>
-        </KeepAlive>
-      </Transition>
+        </Transition>
+      </template>
     </RouterView>
   </component>
 </template>
@@ -49,4 +54,3 @@ const layoutComponent = computed(() => {
   background: theme('colors.cyan.500');
 }
 </style>
-`
