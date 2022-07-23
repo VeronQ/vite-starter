@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  layout: layout-full-page
-</route>
-
 <script setup lang="ts">
 </script>
 
